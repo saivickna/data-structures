@@ -37,8 +37,25 @@ describe('tree', function() {
     tree.addChild(6);
     tree.children[0].addChild(7);
     tree.children[1].addChild(8);
+
     expect(tree.contains(7)).to.equal(true);
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('should be able to do a left to right bfs search', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.addChild(7);
+    tree.children[0].addChild(8);
+    tree.children[1].addChild(9);
+    tree.children[1].children[0].addChild(10);
+
+    var array = [];
+    var func = function(value) { array.push(value); };
+    tree.bfs(func);
+    expect(array).to.eql([undefined, 5, 6, 7, 8, 9, 10]);
+  });
+
 });
+
+

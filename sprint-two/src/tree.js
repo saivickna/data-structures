@@ -31,6 +31,20 @@ treeMethods.contains = function(target) {
   return result;
 };
 
+treeMethods.bfs = function(func) {
+  var q = new Queue();
+  q.enqueue(this);
+  //func(this.value);
+
+  while (q.size()) {
+    var node = q.dequeue();
+    func(node.value);
+    for (var x = 0; x < node.children.length; x++) {
+      q.enqueue(node.children[x]);
+    }
+  }
+};
+
 
 
 /*
